@@ -1,0 +1,62 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+
+    <div class="recipe-search">
+        <mat-form-field color="accent">
+            <input type="text" matInput placeholder="Search tags" (input)="searchValue = $event.target.value">
+            <button mat-raised-button matSuffix type="button" color="primary" (click)="searchTags()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="sort-by" *ngIf="recipes.length > 0">
+        <button color="accent" mat-raised-button (click)="sortRecipes()">Sort By {{ sortByStringDisplay }}</button>
+    </div>
+    
+    <div class="recipe-container"
+    *ngIf="recipes.length > 0"
+    infiniteScroll
+    [infiniteScrollDistance]="3"
+    [infiniteScrollThrottle]="50"
+    [scrollWindow]="false"
+    (scrolled)="onScroll()"
+    >
+        <mat-card *ngFor="let recipe of recipes; let i = index" class="mat-elevation-z2">
+            <a [routerLink]="['/recipe', recipe.id]" class="recipe-img">
+                <div [ngStyle]="{'background-image': 'url(' + recipe.imgPath + ')'}">
+                </div>
+            </a> 
+            <div class="recipe-card-right">
+                <div class="mat-card-top">
+                    <a [routerLink]="['/user', recipe.creatorUsername]"> {{ recipe.creatorUsername | stringcut:15 }} </a>
+                    <span>{{ recipe.votes }} <mat-icon
+                        [ngClass]="userHasVoted(recipe)"
+                        (click)="addToFavourites(recipe, i)">favorite</mat-icon></span>
+                </div>
+                <div class="mat-card-center">
+                    <mat-card-title> {{ recipe.name | titlecase | stringcut:30 }} </mat-card-title>
+                    <mat-card-content>
+                        <span class="recipe-tag" *ngFor="let tag of recipe.tags">
+                            <a [routerLink]="['/tag', tag]"> {{ tag }} </a>
+                        </span>
+                    </mat-card-content>
+                </div>
+                <div class="mat-card-bottom">
+                    <span>Added {{ recipe.createdAt | date: 'd/M/yy' }} </span>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    
+    <div class="empty-recipes" *ngIf="recipes.length == 0">
+        <h2> {{ loadingString }} </h2>
+    </div>
+</div>
+
+
+
+<div class="info-message" *ngIf="displayInfoMessage">
+    <p> {{ infoMessage | titlecase }} </p>
+</div>

@@ -1,0 +1,89 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+    <div class="recipe-controls" *ngIf="recipe && userId === recipe.creatorId">
+
+        <a class="recipe-control-btn" mat-mini-fab color="primary" [routerLink]="['/recipe/edit', recipe.id]">
+            <mat-icon>edit</mat-icon>
+        </a>
+
+        <button type="button" mat-mini-fab color="warn" class="recipe-control-btn" (click)="onDeleteDialog()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+
+    <div class="recipe-item" *ngIf="recipe">
+
+        <div class="recipe-header">
+            <h1> {{ recipe.name | titlecase | stringcut:30 }} </h1>
+            <div class="recipe-sub-heading">
+                <span> <a [routerLink]="['/user', recipe.creatorUsername]"> {{ recipe.creatorUsername | stringcut:15 }} </a> </span>
+                <span> Added {{ recipe.createdAt | date: 'd/M/yy' }} </span>
+                <span> {{ recipe.votes}} <mat-icon [ngClass]="userHasVoted()" (click)="addToFavourites()">favorite</mat-icon> </span>
+            </div>
+            <div class="recipe-img">
+                <img [src]="recipe.imgPath" [alt]="recipe.name">
+            </div>
+            <div class="recipe-tags">
+                <span *ngFor="let tag of recipe.tags" class="recipe-tag">
+                    <a [routerLink]="['/tag', tag]"> {{ tag }} </a>
+                </span>
+            </div>
+        </div>
+
+        <div class="recipe-instructions">
+            <ol>
+                <li *ngFor="let instruction of recipe.instructions">
+                    {{ instruction }}
+                </li>
+            </ol>
+        </div>
+
+        <div class="recipe-ingredients" *ngIf="userIsAuthenticated">
+            <h2>Add {{ recipe.name | titlecase }} Ingredients To Your Shopping List</h2>
+            <form (submit)="onAddIngredients()" [formGroup]="form">
+
+                <div formArrayName="ingredients">
+                    <mat-form-field *ngFor="let ingredientCtrl of ingredientControls; let i = index" [floatLabel]="'never'" color="accent">
+                        <input type="text"
+                        matInput
+                        [formControl]="ingredientControls[i]"
+                        [value]="ingredientControls[i].value | trim | titlecase"
+                        >
+                        <button mat-mini-fab matSuffix color="warn" type="button" class="del-btn" (click)=deleteIngredient(i)>
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <mat-error>Please enter a recipe ingredient</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button type="submit" mat-raised-button class="submit-btn" color="accent" [disabled]="!form.valid">
+                    Add To Shopping List!
+                </button>
+            </form>
+        </div>
+
+        <div class="recipe-ingredients-notauth" *ngIf="!userIsAuthenticated">
+            <h2>{{ recipe.name | titlecase }} Ingredients</h2>
+            <h4>Login To Add Ingredients To Your Shopping List</h4>
+            <div class="cta">
+                <a routerLink="/login" mat-raised-button color="accent">Login</a>
+                <a routerLink="/signup" mat-raised-button color="accent">Signup</a>
+            </div>
+            <ul>
+                <li *ngFor="let ingredient of recipe.ingredients">
+                    <div class="ingredients-name">
+                        {{ ingredient | titlecase | trim }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="info-message" *ngIf="displayInfoMessage">
+    <p> {{ infoMessage | titlecase }} </p>
+</div>

@@ -1,0 +1,18 @@
+h1 {
+    font-size: 1.6rem;
+    width: 100%;
+    text-align: center;
+}
+
+div p {
+    font-size: 1.3rem;
+    width: 80%;
+    margin: 15% auto;
+}
+
+div button {
+    font-size: 1.3rem;
+    display: block;
+    padding: .5rem 1rem;
+    margin: 1rem auto;
+}

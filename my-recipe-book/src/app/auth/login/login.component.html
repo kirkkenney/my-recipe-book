@@ -1,0 +1,24 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+    <h1>Login</h1>
+
+    <mat-card>
+    
+        <form (submit)="onLogin()" [formGroup]="form">
+    
+            <mat-form-field color="accent">
+                <input type="email" matInput formControlName="email" placeholder="Your email address">
+            </mat-form-field>
+    
+            <mat-form-field color="accent">
+                <input type="password" matInput formControlName="password" placeholder="Your password">
+            </mat-form-field>
+    
+            <button  [disabled]="!form.valid" type="submit" mat-raised-button color="accent" class="submit-btn">Login</button>
+    
+        </form>
+    
+    </mat-card>
+</div>
+

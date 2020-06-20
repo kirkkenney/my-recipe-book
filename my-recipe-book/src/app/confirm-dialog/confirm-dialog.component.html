@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>This action cannot be undone!</h1>
+
+<div mat-dialog-content>
+    <p> {{ message }} </p>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onDismissDelete()" color="accent">NO</button>
+    <button mat-raised-button color="warn" (click)="onConfirmDelete()">YES</button>
+</div>

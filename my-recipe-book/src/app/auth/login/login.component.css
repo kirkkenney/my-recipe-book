@@ -1,0 +1,37 @@
+h1 {
+    width: 100%;
+    text-align: center;
+    color: var(--theme-primary);
+    margin: 1.5rem 0;
+}
+
+mat-card {
+    width: 90%;
+    margin: 2rem auto;
+    background: var(--theme-primary);
+}
+
+form,
+form fieldset,
+mat-form-field {
+    width: 100%;
+}
+
+.submit-btn {
+    display: block;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    padding: .3rem 1rem;
+}
+
+@media only screen and (min-width: 680px) {
+    mat-card {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    mat-card {
+        width: 60%;
+    }
+}

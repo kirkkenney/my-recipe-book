@@ -1,0 +1,365 @@
+#landing {
+    min-height: calc(100vh - 56px);
+    width: 100%;
+    background-image: url('../../assets/landing-portrait.jpg');
+    background-size: cover;
+    background-position: center;
+    color: rgb(225, 225, 225);
+}
+
+#landing > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+
+#landing .landing-text {
+    padding: 0 2rem;
+    margin: 3rem 0;
+}
+
+#landing .landing-text h1 {
+    letter-spacing: .2rem;
+    font-weight: bold;
+}
+
+#landing .landing-text h1 {
+    margin-top: 2rem;
+    font-size: 2.3rem;
+}
+
+#landing .landing-text h1 span {
+    color: rgb(210, 100, 182);
+    text-shadow: 1px 1px 1px #FFFFFF;
+    font-size: 2.3rem;
+}
+
+#landing .landing-cta {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+#landing .landing-cta a {
+    display: inline-block;
+    width: 25%;
+    padding: .1rem 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#landing .landing-cta a:hover {
+    background: rgb(164, 128, 207);
+}
+
+.scroll {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.scroll-icon {
+    animation: scrollBounce .5s infinite alternate;
+}
+
+@keyframes scrollBounce {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(20px); }
+}
+
+#slider {
+    width: 100%;
+}
+
+.recipe-item {
+    display: block;
+    width: 100%;
+    height: 12rem;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    margin: .2rem 0;
+    border-top: solid .2rem rgb(164, 128, 207);
+    border-bottom: solid .2rem rgb(164, 128, 207);
+    cursor: pointer;
+}
+
+.recipe-item:first-child {
+    margin-top: 0;
+}
+
+.recipe-item:last-child {
+    margin-bottom: 0;
+}
+
+.recipe-item .recipe-top {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.recipe-item .recipe-top,
+.recipe-item .recipe-bottom {
+    background: rgb(210, 100, 182);
+    color: rgb(225, 225, 225);
+    padding: .25rem 1rem;
+}
+
+.recipe-item .recipe-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.recipe-item .recipe-bottom span {
+    display: inline-flex;
+    justify-content: center;
+    height: 100%;
+    color: rgb(212, 212, 212);
+}
+
+.recipe-item .recipe-bottom span > mat-icon {
+    transform: scale(.8);
+    margin-left: .2rem;
+}
+
+.show-mobile {
+    display: block;
+}
+
+@media only screen and (min-width: 546px) {
+    #landing .landing-cta {
+        margin-top: 2rem;
+    }
+    
+    #landing .landing-cta a {
+        width: 25%;
+        font-size: 1.2rem;
+    }
+
+    #slider {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: space-around;
+    }
+
+    .recipe-item {
+        width: 47%;
+        height: 12rem;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        margin: 1rem auto 0 auto;
+        border: none;
+    }
+
+    .recipe-item:first-child {
+        margin-top: 1rem;
+    }
+
+    .recipe-item:last-child {
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-width: 620px) {
+    #landing .landing-text {
+        margin-top: 4rem;
+        padding: 0 3rem;
+    }
+
+    #landing .landing-cta {
+        width: 70%;
+        margin: 2rem auto 0 auto;
+    }
+
+    #landing .landing-cta a {
+        width: 20%;
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    #landing {
+        background-image: url('../../assets/landing-landscape.jpg')
+    }
+
+    .show-mobile {
+        display: none;
+    } 
+}
+
+@media only screen and (min-width: 850px) {
+    #landing > div:first-child {
+        width: 60%;
+        margin-left: 10%;
+    }
+
+    #landing .landing-text {
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    #landing .landing-cta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #landing .landing-cta a {
+        width: 30%;
+        margin: 0 15% 0 0;
+    }
+
+    #slider {
+        width: 100%;
+        background: none;
+        height: 25vh;
+        margin-top: -25vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+    
+    .recipe-item {
+        width: 20%;
+        height: 100%;;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        border: none;
+    }
+
+    .recipe-item:first-child {
+        margin-top: 0;
+    }
+
+    .recipe-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .recipe-item .recipe-top {
+        font-size: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .recipe-item .recipe-top,
+    .recipe-item .recipe-bottom {
+        background: rgb(210, 100, 182);
+        color: rgb(225, 225, 225);
+        padding: .2rem .5rem;
+    }
+    
+    .recipe-item .recipe-bottom {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 916px) {
+    #landing > div:first-child {
+        width: 55%;
+        margin-left: 5%;
+    }
+
+    #landing .landing-text {
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    #landing .landing-cta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #landing .landing-cta a {
+        width: 25%;
+        margin: 0 15% 0 0;
+    }    
+}
+
+@media only screen and (min-width: 1000px) {
+    #landing > div:first-child {
+        width: 50%;
+        margin-left: 5%;
+    }
+
+    #landing .landing-text {
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    #landing .landing-text h1 {
+        font-size: 2.5rem;
+    }
+
+    #landing .landing-cta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #landing .landing-cta a {
+        width: 22%;
+        margin: 0 15% 0 0;
+        font-size: 1rem;
+    }    
+
+    #slider {
+        width: 100%;
+        background: none;
+        height: 20vh;
+        margin-top: -20vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    #landing > div:first-child {
+        width: 50%;
+        margin-left: 5%;
+    }
+
+    #landing .landing-text {
+        padding: 0;
+    }
+
+    #landing .landing-text h1 {
+        font-size: 2.6rem;
+        margin: 2.5rem 0;
+    }
+
+    #landing .landing-cta {
+        margin-top: 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #landing .landing-cta a {
+        width: 22%;
+        margin: 0 15% 0 0;
+        font-size: 1rem;
+    }    
+
+    #slider {
+        width: 100%;
+        background: none;
+        height: 22vh;
+        margin-top: -22vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+}

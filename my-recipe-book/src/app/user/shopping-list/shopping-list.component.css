@@ -1,0 +1,77 @@
+h1 {
+    color: var(--theme-primary);
+    text-align: center;
+    width: 85%;
+    margin: 2rem auto;
+    font-size: 1.6rem;
+}
+
+form {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+form mat-form-field {
+    width: 80%;
+    text-align: left;
+}
+
+.ingredients-controls {
+    margin-top: 2rem;
+}
+
+.ingredients-controls div {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.ingredients-controls .del-btn {
+    transform: scale(0.9);
+}
+
+.add-btn {
+    display: block;
+    margin: .6rem auto;
+}
+
+.submit-btn {
+    display: block;
+    margin: 2.5rem auto;
+    font-size: 1.2rem;
+    padding: .3rem 1rem;
+}
+
+.info-message {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: var(--theme-primary);
+    padding: 1rem 2rem;
+    text-align: center;
+    color: rgb(215, 215, 215);
+    font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 450px) {
+    h1 {
+        margin: 3rem auto;
+    }
+    form mat-form-field {
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    h1, form {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 950px) {
+    h1, form {
+        width: 60%;
+    }
+}

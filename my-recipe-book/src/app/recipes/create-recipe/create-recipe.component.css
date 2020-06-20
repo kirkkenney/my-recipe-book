@@ -1,0 +1,113 @@
+h1, h3 {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: var(--theme-primary);
+    margin: 1.5rem 0;
+}
+
+h3 {
+    margin: .5rem 0;
+    color: var(--theme-blue-accent);
+}
+
+mat-card {
+    width: 90%;
+    margin: 2rem auto;
+    background: var(--theme-primary);
+}
+
+form,
+form fieldset,
+mat-form-field {
+    width: 100%;
+}
+
+.instructions-controls input {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.ingredients-controls {
+    margin-top: 2rem;
+}
+
+.ingredients-controls div {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.ingredients-controls input {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+
+.add-btn {
+    display: block;
+    margin: .6rem auto;
+}
+
+.submit-btn {
+    display: block;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    padding: .3rem 1rem;
+}
+
+.img-preview {
+    width: 70%;
+    height: 7rem;
+    position: relative;
+    margin: auto;
+}
+
+.img-preview > img {
+    display: block;
+    margin: auto;
+    max-height: 100%;
+}
+
+@media only screen and (min-width: 650px) {
+    .img-preview {
+        height: 9rem;
+    }
+}
+
+@media only screen and (min-width: 850px) {
+    mat-card {
+        width: 80%;
+        margin: 2rem auto;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .form-row {
+        width: 95%;
+        margin: 1.5rem auto;
+        display: flex;
+        justify-content: space-around;
+    }
+    mat-card {
+        width: 45%;
+    }
+    .recipe-header {
+        flex-grow: 1;
+        margin: 0 1.5rem;
+    }
+    .img-preview {
+        height: 10rem;
+        width: 50%;
+    }
+    .instructions-controls input {
+        width: 100%;
+        font-size: .9rem;
+    }
+    .ingredients-controls input {
+        width: 100%;
+        font-size: .9rem;
+    }
+}

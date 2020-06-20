@@ -1,0 +1,37 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div id="landing" *ngIf="!isLoading">
+     <div>
+         <div class="landing-text">
+             <h1><span>Discover</span> and <span>save</span> recipes.</h1>
+             <h1><span>Add</span> recipe ingredients to your <span>shopping list.</span></h1>
+         </div>
+         <div class="landing-cta" *ngIf="!userIsAuthenticated">
+             <a routerLink="signup" mat-raised-button color="accent"
+             >SIGNUP</a>
+             <a routerLink="login" mat-raised-button color="accent"
+             >LOGIN</a>
+         </div>
+         <div class="landing-cta" *ngIf="userIsAuthenticated">
+            <a routerLink="/recipes/share" mat-raised-button color="accent"
+            >SHARE</a>
+            <a routerLink="/recipes" mat-raised-button color="accent"
+            >DISCOVER</a>
+        </div>
+     </div>
+     <div class="scroll show-mobile">
+         <img src="assets/scroll.svg" alt="Scroll icon" class="scroll-icon">
+     </div>
+</div>
+<div id="slider" *ngIf="!isLoading">
+    <a *ngFor="let recipe of recipes"
+    [ngStyle]="{'background-image': 'url(' + recipe.imgPath + ')'}" 
+    class="recipe-item" [routerLink]="['recipe', recipe.id]">
+        <div class="recipe-top">
+            {{ recipe.name | titlecase | stringcut:30 }}
+        </div>
+        <div class="recipe-bottom">
+            <span>{{ recipe.votes }} <mat-icon>favorite</mat-icon></span>
+        </div>
+    </a>
+</div>

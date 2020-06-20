@@ -1,0 +1,97 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+    <h1>Share A Recipe</h1>
+
+
+    
+    <form (submit)="onSaveRecipe()" [formGroup]="form">
+
+        <div class="form-row">
+            <div class="img-preview" *ngIf="imgPreview">
+                <img [src]="imgPreview" alt="Recipe image preview" (error)="setImgPathError($event)">
+            </div>
+        
+            <mat-card class="recipe-header">
+                <h3>Recipe details:</h3>
+                <mat-form-field color="accent">
+                    <input type="text" matInput name="name" formControlName="name" placeholder="Recipe name">
+                    <mat-error>Please enter a recipe name</mat-error>
+                </mat-form-field>
+        
+                <mat-form-field color="accent">
+                    <input type="text" matInput name="imgPath" formControlName="imgPath" placeholder="Recipe image URL"
+                    (keyup)="updateImgPreview()"
+                    >
+                    <mat-error *ngIf="form.get('imgPath').errors?.invalidPath">Image URL provided is not valid</mat-error>
+                </mat-form-field>
+        
+                <mat-form-field color="accent">
+                    <mat-chip-list #chipList>
+                      <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                               [removable]="removable" (removed)="remove(tag)" color="accent" selected>
+                        {{ tag }}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Add a recipe tag"
+                             [matChipInputFor]="chipList"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="addOnBlur"
+                             (matChipInputTokenEnd)="add($event)">
+                             <mat-error *ngIf="form.get('tags').errors?.tagArrLength">Cannot have more than 5 tags</mat-error>
+                             <mat-error *ngIf="form.get('tags').errors?.tagLength">Tags cannot be longer than 15 characters</mat-error>
+                    </mat-chip-list>
+                  </mat-form-field>
+            </mat-card>
+        </div>
+
+        <div class="form-row">
+            <mat-card>
+                <div formArrayName="instructions" class="instructions-controls">
+                    <h3>Recipe instructions:</h3>
+                    <mat-form-field *ngFor="let instructionCtrl of instructionControls; let i = index" [floatLabel]="'never'" color="accent">
+                        <input type="text"
+                        matInput
+                        placeholder="Add recipe instruction"
+                        [formControl]="instructionControls[i]"
+                        (blur)="$event.target.value=trimArrInput($event.target.value)">
+                        
+                        <button mat-mini-fab matSuffix color="warn" type="button" class="del-btn" (click)=deleteInstruction(i) *ngIf="i > 0 || editMode">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <mat-error>Please enter a recipe instruction</mat-error>
+                    </mat-form-field>
+                    <button mat-mini-fab color="accent" (click)="addInstruction()" type="button" class="add-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </mat-card>
+        
+            <mat-card>
+                <div formArrayName="ingredients" class="ingredients-controls">
+                    <h3>Recipe ingredients:</h3>
+                    <mat-form-field *ngFor="let ingredientCtrl of ingredientControls; let i = index" [floatLabel]="'never'" color="accent">
+                        <input type="text"
+                        matInput
+                        placeholder="Add recipe ingredient"
+                        [formControl]="ingredientControls[i]"
+                        (blur)="$event.target.value=trimArrInput($event.target.value)">
+                        <button mat-mini-fab matSuffix color="warn" type="button" class="del-btn" (click)=deleteIngredient(i) *ngIf="i > 0 || editMode">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <mat-error>Please enter a recipe ingredient</mat-error>
+                    </mat-form-field>
+        
+                    <button mat-mini-fab color="accent" (click)="addIngredient()" type="button" class="add-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </mat-card>
+        </div>
+
+        <button type="submit" mat-raised-button class="submit-btn" color="accent" [disabled]="!form.valid">
+            Share!
+        </button>
+    
+    </form>
+</div>

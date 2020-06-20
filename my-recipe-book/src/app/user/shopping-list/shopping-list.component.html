@@ -1,0 +1,35 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+    <h1>View, Add, Delete And Edit Your Shopping List</h1>
+
+    <form (submit)="onSubmit()" [formGroup]="form" *ngIf="form">
+        <div formArrayName="ingredients">
+            <mat-form-field *ngFor="let ingredientCtrl of ingredientControls; let i = index" [floatLabel]="'never'" color="accent">
+                <input type="text"
+                matInput
+                [formControl]="ingredientControls[i]"
+                [value]="ingredientControls[i].value | titlecase | trim"
+                >
+                <button mat-mini-fab matSuffix color="warn" type="button" class="del-btn" (click)=deleteIngredient(i)>
+                    <mat-icon>clear</mat-icon>
+                </button>
+                <mat-error>Please enter a recipe ingredient</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <button mat-mini-fab color="accent" (click)="addIngredient()" type="button" class="add-btn">
+            <mat-icon>add</mat-icon>
+        </button>
+    
+        <button type="submit" class="submit-btn" color="accent" mat-raised-button>
+            Update Shopping List!
+        </button>
+    </form>
+</div>
+
+
+<div class="info-message" *ngIf="displayInfoMessage">
+    <p> {{ infoMessage | titlecase }} </p>
+</div>
+

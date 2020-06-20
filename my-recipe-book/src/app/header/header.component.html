@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+    <div>
+        <a routerLink="/"><img src="assets/cupcake.png" alt="Recipe Book Cupcake Logo"></a>
+        <span class="username" *ngIf="userIsAuthenticated">Hi {{ username | stringcut:15 }}</span>
+    </div>
+
+    <div>
+        <button mat-button [matMenuTriggerFor]="menu" class="show-mobile">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <mat-menu #menu="matMenu" class="show-mobile">
+          <a mat-menu-item routerLink=''>Home</a>
+          <a mat-menu-item routerLink='/recipes'>Discover</a>
+          <a mat-menu-item routerLink='/signup' *ngIf="!userIsAuthenticated">Signup</a>
+          <a mat-menu-item routerLink='/login' *ngIf="!userIsAuthenticated">Login</a>
+          <a routerLink='/user/shopping-list' mat-menu-item *ngIf="userIsAuthenticated">My Shopping List</a>
+          <a [routerLink]="['/user', username]" mat-menu-item *ngIf="userIsAuthenticated">My Recipes</a>
+          <a mat-menu-item routerLink='/recipes/share' *ngIf="userIsAuthenticated">Share Recipe</a>
+          <button *ngIf="userIsAuthenticated" (click)="onLogout()" mat-button>Logout</button>
+        </mat-menu>
+
+        <div class="show-desktop desktop-menu">
+            <ul>
+                <li>
+                    <a routerLink='' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Home
+                    </a>
+                </li>
+                <li>
+                    <a routerLink='/recipes' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Discover</a>
+                </li>
+                <li *ngIf="!userIsAuthenticated">
+                    <a routerLink='/signup' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Signup</a>
+                </li>
+                <li *ngIf="!userIsAuthenticated">
+                    <a routerLink='/login' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Login</a>
+                </li>
+                <li *ngIf="userIsAuthenticated">
+                    <a routerLink='/user/shopping-list' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Shopping List</a>
+                </li>
+                <li *ngIf="userIsAuthenticated">
+                    <a [routerLink]="['/user', username]" mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">My Recipes</a>
+                </li>
+                <li *ngIf="userIsAuthenticated">
+                    <a routerLink='/recipes/share' mat-button routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact:true}">Share Recipe</a>
+                </li>
+                <li *ngIf="userIsAuthenticated">
+                    <button mat-button (click)="onLogout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</mat-toolbar>

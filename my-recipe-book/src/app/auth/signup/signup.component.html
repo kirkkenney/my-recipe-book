@@ -1,0 +1,39 @@
+<app-loadingoverlay *ngIf="isLoading"></app-loadingoverlay>
+
+<div *ngIf="!isLoading">
+    <h1>Signup!</h1>
+
+    <mat-card>
+    
+        <form (submit)="onSignUp()" [formGroup]="form">
+            <mat-form-field color="accent" [floatLabel]="'never'">
+                <input type="text" matInput placeholder="Choose a username" formControlName="username">
+                <!-- <mat-error>Please choose a username</mat-error> -->
+                <mat-error *ngIf="form.get('username').errors?.required">Username is required</mat-error>
+                <mat-error *ngIf="form.get('username').errors?.spaces">Username cannot contain spaces</mat-error>
+                <mat-error *ngIf="form.get('username').errors?.usernametaken">Username is already in use</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field color="accent" [floatLabel]="'never'">
+                <input type="email" matInput placeholder="Email address" formControlName="email">
+                <mat-error>Please enter a valid email address</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field color="accent" [floatLabel]="'never'">
+                <input type="password" matInput placeholder="Choose a password" formControlName="password">
+                <mat-error>Password must be at least 7 characters</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field color="accent">
+                <input type="password" matInput placeholder="Confirm password" formControlName="confirmPassword">
+                <mat-error>Password fields must match</mat-error>
+                <!-- <mat-error *ngIf="form.get('confirmPassword').invalid || form.errors?.mismatch">Password fields must match</mat-error> -->
+            </mat-form-field>
+    
+            <button mat-raised-button color="accent" [disabled]="!form.valid" type="submit" class="submit-btn">Signup</button>
+            
+        </form>
+    
+    </mat-card>
+</div>
+
